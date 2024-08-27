@@ -111,26 +111,33 @@ class _FilterActivitiesState extends State<FilterActivities> {
             'Select category',
             maxLines: null,
           ),
-          DropdownButtonFormField(
-            value: _selectedCategory,
-            items: [
-              for (final category in availableCategories.entries)
-                DropdownMenuItem(
-                  value: category.value,
-                  child: Text(
-                    category.value.title,
-                    style: TextStyle(
-                      color: category.value.color,
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: primaryColor, width: 1.5),
+            ),
+            child: DropdownButtonFormField(
+              value: _selectedCategory,
+              items: [
+                for (final category in availableCategories.entries)
+                  DropdownMenuItem(
+                    value: category.value,
+                    child: Text(
+                      category.value.title,
+                      style: TextStyle(
+                        color: category.value.color,
+                      ),
                     ),
                   ),
-                ),
-            ],
-            borderRadius: BorderRadius.circular(16),
-            onChanged: (value) {
-              setState(() {
-                _selectedCategory = value;
-              });
-            },
+              ],
+              borderRadius: BorderRadius.circular(16),
+              onChanged: (value) {
+                setState(() {
+                  _selectedCategory = value;
+                });
+              },
+            ),
           ),
           const SizedBox(height: 16),
           Row(

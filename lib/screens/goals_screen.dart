@@ -228,105 +228,107 @@ class _GoalsScreenState extends State<GoalsScreen> {
           ],
         ),
       ),
-      body: Column(children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  const Text('Turn goals on or off'),
-                  const Spacer(),
-                  Switch(
-                    value: _switchValue,
-                    onChanged: (value) {
-                      setState(() {
-                        _switchValue = value;
-                      });
-                    },
-                    activeColor: primaryColor,
-                    inactiveThumbColor: Colors.grey,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              const Text(
-                'Select desired number of activities or select desired duration of activities in a day:',
-                textAlign: TextAlign.center,
-                maxLines: null,
-              ),
-              TextField(
-                controller: _controller,
-                maxLength: 1,
-                keyboardType: TextInputType.number,
-                inputFormatters: [_numberFormatter],
-                cursorColor: primaryColor,
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  focusedBorder: roundedPrimaryColorTextFieldBorder,
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              TextButton(
-                style: roundedBorderTextButton,
-                onPressed: _presentActivitiesDurationPicker,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Column(children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Column(
+              children: [
+                Row(
                   children: [
-                    Text(
-                      readableDuration(_selectedActivitiesDuration),
-                      style: primaryColorText,
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Icon(
-                      Icons.timer,
-                      color: primaryColor,
+                    const Text('Turn goals on or off'),
+                    const Spacer(),
+                    Switch(
+                      value: _switchValue,
+                      onChanged: (value) {
+                        setState(() {
+                          _switchValue = value;
+                        });
+                      },
+                      activeColor: primaryColor,
+                      inactiveThumbColor: Colors.grey,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              const Text(
-                'Select date range',
-                maxLines: null,
-              ),
-              TextButton(
-                style: roundedBorderTextButton,
-                onPressed: _presentDateRangePicker,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '${readableDate(_selectedRange.start)} - ${readableDate(_selectedRange.end)}',
-                      style: primaryColorText,
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    const Icon(
-                      Icons.calendar_month,
-                      color: primaryColor,
-                    ),
-                  ],
+                const SizedBox(
+                  height: 16,
                 ),
-              ),
-            ],
+                const Text(
+                  'Select desired number of activities or select desired duration of activities in a day:',
+                  textAlign: TextAlign.center,
+                  maxLines: null,
+                ),
+                TextField(
+                  controller: _controller,
+                  maxLength: 1,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [_numberFormatter],
+                  cursorColor: primaryColor,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    focusedBorder: roundedPrimaryColorTextFieldBorder,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextButton(
+                  style: roundedBorderTextButton,
+                  onPressed: _presentActivitiesDurationPicker,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        readableDuration(_selectedActivitiesDuration),
+                        style: primaryColorText,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      const Icon(
+                        Icons.timer,
+                        color: primaryColor,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                const Text(
+                  'Select date range',
+                  maxLines: null,
+                ),
+                TextButton(
+                  style: roundedBorderTextButton,
+                  onPressed: _presentDateRangePicker,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${readableDate(_selectedRange.start)} - ${readableDate(_selectedRange.end)}',
+                        style: primaryColorText,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      const Icon(
+                        Icons.calendar_month,
+                        color: primaryColor,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        mainContent,
-      ]),
+          mainContent,
+        ]),
+      ),
     );
   }
 }
